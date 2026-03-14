@@ -3,8 +3,8 @@ import logo from "./assets/logo.jpg"
 import React, { useState } from "react";
 import ChatApp from "./chat.jsx";
 import { useNavigate, useEffect } from "react-router-dom";
-import useStyles from "./Estilos.jsx";
-import historias from "../data/historias.json";
+import useStyles from "../src/Styles/App.css";
+import historias from "../src/data/History.Json";
 
 function SafeTalk() {
     const [showChat, setShowChat] = useState(false);
