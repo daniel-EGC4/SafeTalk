@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useHistorias } from "./hooks/useHistorias.jsx";
 
 function History() {
     const { id } = useParams();
