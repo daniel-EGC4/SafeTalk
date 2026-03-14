@@ -2,14 +2,21 @@ import "./App.css"
 import logo from "./assets/logo.jpg"
 import React, { useState } from "react";
 import ChatApp from "./chat.jsx";
-import { useNavigate, useEffect } from "react-router-dom";
-import useStyles from "../src/Styles/App.css";
-import historias from "../src/data/History.Json";
+import { useNavigate } from "react-router-dom";
+import useStyles from "./Estilos.jsx";
+import historiasData from "./data/historias.json";
+
+const useHistorias = () => {
+    return { historias: historiasData, loading: false };
+};
 
 function SafeTalk() {
     const [showChat, setShowChat] = useState(false);
+    const { historias, loading } = useHistorias();
+    const navigate = useNavigate();
 
-    const { COLORS, TemaHeader, TemaHero, TemaSeccion, TemaBeneficios, TemaHistorias, TemaTestimonio, TemaUrgente, TemaFooter, TemaBotonFlotante } = useStyles();
+    const { COLORS, TemaHeader, TemaHero, TemaSeccion, TemaBeneficios,
+        TemaHistorias, TemaTestimonio, TemaUrgente, TemaFooter, TemaBotonFlotante } = useStyles();
 
     const headerStyles = TemaHeader();
     const heroStyles = TemaHero();
@@ -21,6 +28,7 @@ function SafeTalk() {
     const footerStyles = TemaFooter();
     const flotanteStyles = TemaBotonFlotante();
 
+
     if (showChat) return <ChatApp />;
 
     function handleChatClick() {
@@ -30,19 +38,7 @@ function SafeTalk() {
     function handleNavigateToChat() {
         setShowChat(true);
     }
-    const useHistorias = () => {
-        const [historias, setHistorias] = useState([]);
-        const [loading, setLoading] = useState(true);
 
-        useEffect(() => {
-            import("./data/historias.json").then((datos) => {
-                setHistorias(datos.default);
-                setLoading(false);
-            });
-        }, []);
-
-        return { historias, loading };
-    };
 
 
     return (
