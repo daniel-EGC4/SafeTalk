@@ -35,11 +35,10 @@ function SafeTalk() {
         const [loading, setLoading] = useState(true);
 
         useEffect(() => {
-            const useHistorias = () => {
-                return { historias, loading: false };
-            };
-            setHistorias(datos);
-            setLoading(false);
+            import("./data/historias.json").then((datos) => {
+                setHistorias(datos.default);
+                setLoading(false);
+            });
         }, []);
 
         return { historias, loading };
