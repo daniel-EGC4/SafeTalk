@@ -2,8 +2,9 @@ import "./App.css"
 import logo from "./assets/logo.jpg"
 import React, { useState } from "react";
 import ChatApp from "./chat.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useEffect } from "react-router-dom";
 import useStyles from "./Estilos.jsx";
+import historias from "../data/historias.json";
 
 function SafeTalk() {
   const [showChat, setShowChat] = useState(false);
@@ -29,6 +30,21 @@ function SafeTalk() {
   function handleNavigateToChat() {
     setShowChat(true);
   }
+  const useHistorias = () => {
+    const [historias, setHistorias] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const useHistorias = () => {
+        return { historias, loading: false };
+      };
+      setHistorias(datos);
+      setLoading(false);
+    }, []);
+
+    return { historias, loading };
+  };
+
 
   return (
     <div style={{ fontFamily: `"Poppins", sans-serif`, background: COLORS.bg, color: COLORS.deepText, minHeight: "100vh" }}>
@@ -132,46 +148,43 @@ function SafeTalk() {
 
       <section style={{ background: COLORS.white }}>
         <div style={seccionStyles.container}>
-          <h2 style={seccionStyles.sectionTitle}>Otros estudiantes que superaron lo que tú estás viviendo</h2>
+          <h2 style={seccionStyles.sectionTitle}>
+            Otros estudiantes que superaron lo que tú estás viviendo
+          </h2>
 
-          <div style={{ display: "grid", gap: 18, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
-            {[{
-              avatar: "🌟",
-              title: "Cómo superé el bullying en 3° de secundaria",
-              text: "Durante meses sentí que no tenía salida, pero encontré el valor para pedir ayuda. Hoy puedo decir que valió la pena...",
-              tags: ["#bullying", "#superación", "#valentía"]
-            }, {
-              avatar: "💪",
-              title: "Vencí la ansiedad antes de los exámenes",
-              text: "Los nervios me paralizaban cada vez que había un examen importante. Aprendí técnicas que cambiaron mi vida escolar...",
-              tags: ["#ansiedad", "#exámenes", "#éxito"]
-            }, {
-              avatar: "🦋",
-              title: "Recuperé mi autoestima después de sentirme invisible",
-              text: "Pensaba que nadie me entendería, pero hablar me ayudó a redescubrir mi valor. Ahora sé que merezco respeto...",
-              tags: ["#autoestima", "#aceptación", "#crecimiento"]
-            }].map((h, idx) => (
-              <article key={idx} style={historiasStyles.card}>
-                <div>
-                  <div style={historiasStyles.avatar}>{h.avatar}</div>
-                  <h3 style={historiasStyles.title}>{h.title}</h3>
-                  <p style={historiasStyles.text}>{h.text}</p>
-                </div>
-
-                <div>
-                  <div style={historiasStyles.tagsRow}>
-                    {h.tags.map((t, i) => (
-                      <span key={i} style={historiasStyles.tag}>{t}</span>
-                    ))}
+          {loading ? (
+            <p style={{ textAlign: "center" }}>Cargando historias...</p>
+          ) : (
+            <div style={{ display: "grid", gap: 18, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
+              {historias.map((h) => (
+                <article key={h.id} style={historiasStyles.card}>
+                  <div>
+                    <div style={historiasStyles.avatar}>{h.avatar}</div>
+                    <h3 style={historiasStyles.title}>{h.title}</h3>
+                    <p style={historiasStyles.text}>{h.text}</p>
                   </div>
 
-                  <div style={{ marginTop: 12 }}>
-                    <button style={historiasStyles.readBtn}>Leer historia completa</button>
+                  <div>
+                    <div style={historiasStyles.tagsRow}>
+                      {h.tags.map((t, i) => (
+                        <span key={i} style={historiasStyles.tag}>{t}</span>
+                      ))}
+                    </div>
+
+                    <div style={{ marginTop: 12 }}>
+                      {/* Navega a History.jsx pasando el id */}
+                      <button
+                        style={historiasStyles.readBtn}
+                        onClick={() => navigate(`/historia/${h.id}`)}
+                      >
+                        Leer historia completa
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
