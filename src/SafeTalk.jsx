@@ -272,8 +272,4 @@ function SafeTalk() {
     );
 }
 
-<<<<<<< HEAD
 export default SafeTalk;
-=======
-export default SafeTalk;
->>>>>>> 0a86fb6261c1542cf4e6035f3eb8871cb42ffabe
