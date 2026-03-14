@@ -1,4 +1,4 @@
-import "./App.css"
+import "./Styles/App.css"
 import logo from "./assets/logo.jpg"
 import React, { useState } from "react";
 import ChatApp from "./chat.jsx";
