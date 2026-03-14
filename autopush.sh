@@ -9,7 +9,8 @@ while true; do
 
   echo "Cambio detectado, subiendo a GitHub..."
   cd "$CARPETA"
+  git pull origin main --no-rebase 2>/dev/null
   git add .
-  git commit -m "Auto-commit: $(date '+%Y-%m-%d %H:%M:%S')"
+  git commit -m "Auto-commit: $(date '+%Y-%m-%d %H:%M:%S')" 2>/dev/null
   git push origin main
 done
