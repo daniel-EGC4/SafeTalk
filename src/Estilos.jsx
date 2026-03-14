@@ -1,3 +1,4 @@
+import React from "react";
 export const useStyles = () => {
     const COLORS = {
         primary: "#6B9BD1",
