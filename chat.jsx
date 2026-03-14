@@ -1,113 +1,128 @@
 import React, { useState } from 'react';
+import SafeTalk from './App';
 
 function HomePage({ onNavigate }) {
+    const [showApp, setShowApp] = useState(false);
+    if (showApp) {
+        return <SafeTalk />;
+    };
+    function handleNavigateToApp() {
+        setShowApp(true);
+    }
     return (
-        <div style={{
-            minHeight: '100vh',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '20px'
-        }}>
+        <>
             <div style={{
-                textAlign: 'center',
-                maxWidth: '800px'
+                minHeight: '100vh',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px'
             }}>
+
+                
+                <div style={{ justifyContent: 'start', flexDirection: 'column', position: 'absolute', top: '20px', left: '20px', color: 'white' }}>
+                    <button onClick={handleNavigateToApp}>Ir a SafeTalk</button>
+                </div>
                 <div style={{
-                    background: '#1a1a2e',
-                    borderRadius: '20px',
-                    padding: '60px 40px',
-                    boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+                    textAlign: 'center',
+                    maxWidth: '800px'
                 }}>
                     <div style={{
-                        fontSize: '80px',
-                        marginBottom: '20px'
-                    }}>💬</div>
-
-                    <h1 style={{
-                        fontSize: '48px',
-                        color: 'white',
-                        marginBottom: '20px',
-                        fontWeight: 'bold'
+                        background: '#1a1a2e',
+                        borderRadius: '20px',
+                        padding: '60px 40px',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
                     }}>
-                        Chat Anónimo
-                    </h1>
+                        <div style={{
+                            fontSize: '80px',
+                            marginBottom: '20px'
+                        }}>💬</div>
 
-                    <p style={{
-                        color: '#b8b8d1',
-                        fontSize: '18px',
-                        marginBottom: '40px',
-                        lineHeight: '1.6'
-                    }}>
-                        Comparte tus pensamientos de forma anónima y segura. Sin registro, sin formularios.
-                    </p>
-
-                    <button
-                        onClick={() => onNavigate('chat')}
-                        style={{
-                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        <h1 style={{
+                            fontSize: '48px',
                             color: 'white',
-                            border: 'none',
-                            padding: '18px 40px',
-                            fontSize: '20px',
-                            borderRadius: '10px',
-                            cursor: 'pointer',
-                            fontWeight: 'bold',
-                            boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
-                            transition: 'transform 0.2s'
-                        }}
-                        onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                        onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                    >
-                        Entrar al Chat
-                    </button>
-
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                        gap: '20px',
-                        marginTop: '50px'
-                    }}>
-                        <div style={{
-                            background: '#16213e',
-                            padding: '30px',
-                            borderRadius: '15px'
+                            marginBottom: '20px',
+                            fontWeight: 'bold'
                         }}>
-                            <div style={{ fontSize: '40px', marginBottom: '10px' }}>🔒</div>
-                            <h3 style={{ color: 'white', marginBottom: '10px' }}>100% Anónimo</h3>
-                            <p style={{ color: '#8d8d9f', fontSize: '14px' }}>
-                                No requiere registro
-                            </p>
-                        </div>
+                            Chat Anónimo
+                        </h1>
 
-                        <div style={{
-                            background: '#16213e',
-                            padding: '30px',
-                            borderRadius: '15px'
+                        <p style={{
+                            color: '#b8b8d1',
+                            fontSize: '18px',
+                            marginBottom: '40px',
+                            lineHeight: '1.6'
                         }}>
-                            <div style={{ fontSize: '40px', marginBottom: '10px' }}>📎</div>
-                            <h3 style={{ color: 'white', marginBottom: '10px' }}>Adjunta Archivos</h3>
-                            <p style={{ color: '#8d8d9f', fontSize: '14px' }}>
-                                Comparte archivos fácilmente
-                            </p>
-                        </div>
+                            Comparte tus pensamientos de forma anónima y segura. Sin registro, sin formularios.
+                        </p>
+
+                        <button
+                            onClick={() => onNavigate('chat')}
+                            style={{
+                                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                color: 'white',
+                                border: 'none',
+                                padding: '18px 40px',
+                                fontSize: '20px',
+                                borderRadius: '10px',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
+                                transition: 'transform 0.2s'
+                            }}
+                            onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+                        >
+                            Entrar al Chat
+                        </button>
 
                         <div style={{
-                            background: '#16213e',
-                            padding: '30px',
-                            borderRadius: '15px'
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                            gap: '20px',
+                            marginTop: '50px'
                         }}>
-                            <div style={{ fontSize: '40px', marginBottom: '10px' }}>⚡</div>
-                            <h3 style={{ color: 'white', marginBottom: '10px' }}>Rápido y Simple</h3>
-                            <p style={{ color: '#8d8d9f', fontSize: '14px' }}>
-                                Interfaz sin complicaciones
-                            </p>
+                            <div style={{
+                                background: '#16213e',
+                                padding: '30px',
+                                borderRadius: '15px'
+                            }}>
+                                <div style={{ fontSize: '40px', marginBottom: '10px' }}>🔒</div>
+                                <h3 style={{ color: 'white', marginBottom: '10px' }}>100% Anónimo</h3>
+                                <p style={{ color: '#8d8d9f', fontSize: '14px' }}>
+                                    No requiere registro
+                                </p>
+                            </div>
+
+                            <div style={{
+                                background: '#16213e',
+                                padding: '30px',
+                                borderRadius: '15px'
+                            }}>
+                                <div style={{ fontSize: '40px', marginBottom: '10px' }}>📎</div>
+                                <h3 style={{ color: 'white', marginBottom: '10px' }}>Adjunta Archivos</h3>
+                                <p style={{ color: '#8d8d9f', fontSize: '14px' }}>
+                                    Comparte archivos fácilmente
+                                </p>
+                            </div>
+
+                            <div style={{
+                                background: '#16213e',
+                                padding: '30px',
+                                borderRadius: '15px'
+                            }}>
+                                <div style={{ fontSize: '40px', marginBottom: '10px' }}>⚡</div>
+                                <h3 style={{ color: 'white', marginBottom: '10px' }}>Rápido y Simple</h3>
+                                <p style={{ color: '#8d8d9f', fontSize: '14px' }}>
+                                    Interfaz sin complicaciones
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
