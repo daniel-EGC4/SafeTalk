@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SafeTalk from './App';
+import SafeTalk from '../App';
 
 function HomePage({ onNavigate }) {
     const [showApp, setShowApp] = useState(false);
@@ -20,7 +20,7 @@ function HomePage({ onNavigate }) {
                 padding: '20px'
             }}>
 
-                
+
                 <div style={{ justifyContent: 'start', flexDirection: 'column', position: 'absolute', top: '20px', left: '20px', color: 'white' }}>
                     <button onClick={handleNavigateToApp}>Ir a SafeTalk</button>
                 </div>
