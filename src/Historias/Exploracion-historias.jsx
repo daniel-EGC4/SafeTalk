@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useStyles from "../SafeTalk/Estilos.jsx";
-import historiasData from "./data/historias.json";
-import logo from "./assets/logo.jpg";
+import historiasData from "../data/historias.json";
+import logo from "../assets/logo.jpg";
 
 // ── Estilos ──────────────────────────────────────────────────────────────────
 
