@@ -69,7 +69,7 @@ function SafeTalk() {
                             💬 Necesito hablar ahora
                         </button>
 
-                        <button style={heroStyles.secondaryBtn}>
+                        <button onClick={handleNavigateToExplorer} style={heroStyles.secondaryBtn}>
                             📖 Explorar historias de superación
                         </button>
                     </div>
