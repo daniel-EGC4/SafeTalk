@@ -1,7 +1,7 @@
 // App.jsx (nuevo, solo rutas)
 import { Routes, Route } from 'react-router-dom'
 import SafeTalk from './SafeTalk/SafeTalk.jsx'
-import History from './History.jsx'
+import History from './Historias/History.jsx'
 
 function App() {
   return (
