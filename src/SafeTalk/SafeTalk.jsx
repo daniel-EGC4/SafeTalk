@@ -3,7 +3,7 @@ import logo from "../assets/logo.jpg"
 import React, { useState } from "react";
 import ChatApp from "../Chat/chat.jsx";
 import { useNavigate } from "react-router-dom";
-import useStyles from "../Styles/index.css";
+import useStyles from "./Estilos.jsx";
 import historiasData from "../data/historias.json";
 
 const useHistorias = () => {
