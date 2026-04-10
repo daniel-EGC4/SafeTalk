@@ -32,6 +32,7 @@ function SafeTalk() {
 
 
     if (showChat) return <ChatApp />;
+    if (showExplorer) return <Explorer />;
 
     function handleChatClick() {
         alert("Esta funcionalidad te permitira agendar una cita en una clinica de salud mental cercana con facilidad y rapidez.");
