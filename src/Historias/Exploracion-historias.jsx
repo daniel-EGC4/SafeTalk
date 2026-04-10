@@ -3,12 +3,13 @@ import useStyles from "../SafeTalk/Estilos";
 
 function explorer() {
     return (
-        <><header style={headerStyles.header}>
-            <div style={headerStyles.container}>
-                <img src={logo} alt="SafeTalk Logo" />
-                <div style={headerStyles.brand}></div>
-            </div>
-        </header>
+        <>
+            <header style={headerStyles.header}>
+                <div style={headerStyles.container}>
+                    <img src={logo} alt="SafeTalk Logo" />
+                    <div style={headerStyles.brand}></div>
+                </div>
+            </header>
             <section style={heroStyles.section}>
                 <div style={heroStyles.inner}>
                     <h1 style={heroStyles.title}>No estás solo/a. Aquí te escuchamos sin juzgar</h1>
@@ -34,7 +35,8 @@ function explorer() {
                         <div style={heroStyles.iconCircle}>🤝</div>
                     </div>
                 </div>
-            </section></>
+            </section>
+        </>
 
     )
 }
