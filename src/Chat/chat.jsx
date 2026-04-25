@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SafeTalk from '../App';
 
 function HomePage({ onNavigate }) {
@@ -132,23 +132,44 @@ function ChatPage({ onNavigate }) {
     const [attachedFile, setAttachedFile] = useState(null);
     const maxChars = 500;
 
-    const handleSendMessage = () => {
-        if (inputText.trim() || attachedFile) {
-            const newMessage = {
-                id: Date.now(),
-                text: inputText.trim(),
-                file: attachedFile,
-                timestamp: new Date().toLocaleTimeString('es-MX', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                })
-            };
-
-            setMessages([...messages, newMessage]);
-            setInputText('');
-            setAttachedFile(null);
+    const cargarMensajes = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/mensajes')
+            const data = await response.json()
+            setMessages(data)
+        } catch (error) {
+            console.error('Error cargando mensajes:', error)
         }
-    };
+    }
+
+    const handleSendMessage = async () => {
+        // Misma validación que tenías
+        if (!inputText.trim() && !attachedFile) return
+
+        try {
+            // Enviamos el mensaje a Flask
+            const response = await fetch('http://localhost:5000/api/mensajes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    texto: inputText.trim(),
+                    archivo_nombre: attachedFile ? attachedFile.name : null
+                })
+            })
+
+            if (response.ok) {
+                // Limpiamos el input
+                setInputText('')
+                setAttachedFile(null)
+                // Recargamos los mensajes desde Flask
+                cargarMensajes()
+            }
+        } catch (error) {
+            console.error('Error enviando mensaje:', error)
+        }
+    }
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -171,6 +192,10 @@ function ChatPage({ onNavigate }) {
             handleSendMessage();
         }
     };
+
+    useEffect(() => {
+        cargarMensajes()
+    }, [])
 
     return (
         <div style={{
@@ -258,17 +283,17 @@ function ChatPage({ onNavigate }) {
                                     <span style={{
                                         color: '#8d8d9f',
                                         fontSize: '12px'
-                                    }}>{msg.timestamp}</span>
+                                    }}>{msg.created_at}</span>
                                 </div>
-                                {msg.text && (
+                                {msg.texto && (
                                     <p style={{
                                         color: '#e8e8f5',
                                         margin: 0,
                                         whiteSpace: 'pre-wrap',
                                         wordBreak: 'break-word'
-                                    }}>{msg.text}</p>
+                                    }}>{msg.texto}</p>
                                 )}
-                                {msg.file && (
+                                {msg.archivo_nombre && (
                                     <div style={{
                                         marginTop: '10px',
                                         background: '#1a1a2e',
@@ -287,15 +312,32 @@ function ChatPage({ onNavigate }) {
                                                 overflow: 'hidden',
                                                 textOverflow: 'ellipsis',
                                                 whiteSpace: 'nowrap'
-                                            }}>{msg.file.name}</p>
-                                            <p style={{
-                                                color: '#8d8d9f',
-                                                fontSize: '12px',
-                                                margin: 0
-                                            }}>{msg.file.size}</p>
+                                            }}>{msg.archivo_nombre}</p>
                                         </div>
                                     </div>
                                 )}
+                                <div style={{
+                                    marginTop: '10px',
+                                    background: '#1a1a2e',
+                                    borderRadius: '8px',
+                                    padding: '10px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '10px'
+                                }}>
+                                    <span style={{ fontSize: '20px' }}>📎</span>
+                                    <div style={{ flex: 1 }}>
+                                        <p style={{
+                                            color: '#e8e8f5',
+                                            fontSize: '14px',
+                                            margin: 0,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'
+                                        }}>{msg.archivo_nombre}</p>
+                                    </div>
+                                </div>
+                                )
                             </div>
                         ))
                     )}
