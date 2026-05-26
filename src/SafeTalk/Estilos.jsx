@@ -61,7 +61,13 @@ export const useStyles = () => {
     function TemaHero() {
         return {
             section: {
-                padding: "64px 20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                /* Reserve space for the sticky header (approx. 136px) so hero centers in remaining viewport */
+                padding: "48px 20px",
+                minHeight: "calc(100vh - 136px)",
                 color: COLORS.white,
                 textAlign: "center",
                 position: "relative",
@@ -72,7 +78,12 @@ export const useStyles = () => {
                 maxWidth: 960,
                 margin: "0 auto",
                 position: "relative",
-                zIndex: 2
+                zIndex: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 12
             },
             title: {
                 fontFamily: `"Poppins", sans-serif`,
@@ -103,7 +114,8 @@ export const useStyles = () => {
                 fontSize: 16,
                 fontWeight: 700,
                 border: "none",
-                boxShadow: "0 10px 24px rgba(0,0,0,0.12)"
+                boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
+                marginLeft: 15
             },
             secondaryBtn: {
                 cursor: "pointer",
