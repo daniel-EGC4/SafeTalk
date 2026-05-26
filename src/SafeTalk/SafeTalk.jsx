@@ -5,7 +5,6 @@ import ChatApp from "../Chat/chat.jsx";
 import { useNavigate } from "react-router-dom";
 import useStyles from "./Estilos.jsx";
 import historiasData from "../data/historias.json";
-import Explorer from "../Historias/Exploracion-historias.jsx";
 
 const useHistorias = () => {
     return { historias: historiasData, loading: false };
@@ -14,7 +13,6 @@ const useHistorias = () => {
 function SafeTalk() {
     const [showChat, setShowChat] = useState(false);
     const { historias, loading } = useHistorias();
-    const [showExplorer, setShowExplorer] = useState(false);
     const navigate = useNavigate();
 
     const { COLORS, TemaHeader, TemaHero, TemaSeccion, TemaBeneficios,
@@ -32,13 +30,12 @@ function SafeTalk() {
 
 
     if (showChat) return <ChatApp />;
-    if (showExplorer) return <Explorer />;
 
     function handleChatClick() {
         alert("Esta funcionalidad te permitira agendar una cita en una clinica de salud mental cercana con facilidad y rapidez.");
     }
     function handleNavigateToExplorer() {
-        setShowExplorer(true);
+        navigate('/explorer');
     }
 
     function handleNavigateToChat() {

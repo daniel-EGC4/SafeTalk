@@ -67,7 +67,7 @@ export const useStyles = () => {
                 flexDirection: "column",
                 /* Reserve space for the sticky header (approx. 136px) so hero centers in remaining viewport */
                 padding: "48px 20px",
-                minHeight: "calc(100vh - 136px)",
+                minHeight: "calc(70vh - 136px)",
                 color: COLORS.white,
                 textAlign: "center",
                 position: "relative",

@@ -19,9 +19,11 @@ function useExplorerStyles(COLORS) {
             },
             grid: {
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 320px))",
                 gap: 24,
                 marginTop: 12,
+                justifyContent: "center",
+                justifyItems: "center",
             },
         };
     }
@@ -224,6 +226,7 @@ function StoryModal({ historia, modalStyles, onClose }) {
 
 function Explorer() {
     const [selected, setSelected] = useState(null);
+    const navigate = useNavigate();
 
     const { COLORS, TemaHeader, TemaHero } = useStyles();
     const { TemaGrid, TemaCard, TemaModal } = useExplorerStyles(COLORS);
@@ -240,7 +243,7 @@ function Explorer() {
             {/* Header — idéntico al de SafeTalk */}
             <header style={headerStyles.header}>
                 <div style={headerStyles.container}>
-                    <img src={logo} alt="SafeTalk Logo" />
+                    <img src={logo} alt="SafeTalk Logo" style={{ cursor: "pointer" }} onClick={() => navigate('/')} />
                     <div style={headerStyles.brand}></div>
                 </div>
             </header>
