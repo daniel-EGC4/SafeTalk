@@ -52,7 +52,7 @@ function SafeTalk() {
             {/* Header */}
             <header style={headerStyles.header}>
                 <div style={headerStyles.container}>
-                    <img src={logo} alt="SafeTalk Logo" style={{ width: "306px", height: "100px" }} />
+                    <img src={logo} alt="SafeTalk Logo" style={{ width: "196px", height: "64px" }} />
                     <div style={headerStyles.brand}></div>
                 </div>
             </header>
