@@ -1,5 +1,5 @@
 import "../Styles/App.css"
-import logo from "../assets/logo.jpg"
+import logo from "../assets/logo.png"
 import React, { useState } from "react";
 import ChatApp from "../Chat/chat.jsx";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +52,7 @@ function SafeTalk() {
             {/* Header */}
             <header style={headerStyles.header}>
                 <div style={headerStyles.container}>
-                    <img src={logo} alt="SafeTalk Logo" />
+                    <img src={logo} alt="SafeTalk Logo" style={{ width: "196px", height: "64px" }} />
                     <div style={headerStyles.brand}></div>
                 </div>
             </header>
@@ -222,10 +222,6 @@ function SafeTalk() {
                             Tu espacio seguro para el bienestar mental. Porque tu salud emocional importa.
                         </div>
 
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                            <span style={footerStyles.badge}>🔒 Datos Protegidos</span>
-                            <span style={footerStyles.badge}>✅ Certificado</span>
-                        </div>
                     </div>
 
                     <div>
